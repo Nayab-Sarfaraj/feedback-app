@@ -1,13 +1,9 @@
 import { Github, Instagram, Linkedin, Twitter } from "lucide-react";
-import { FileUser } from "lucide-react";
 
 import React from "react";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
-  const handleRedirect = () => {
-    window.open("/assets/Feedback-Task.pdf", "_blank");
-  };
   return (
     <div className="w-full flex flex-col p-6 bg-[#FFFFFF] dark:bg-[#242424] dark:text-[#FFFFFF] text-[#000000] gap-5">
       <p className="text-center">
