@@ -9,16 +9,25 @@ const SubmitFeedback = () => {
     email: "",
     feedback: "",
   });
+
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
   const [isLoading, setIsLoading] = useState(false);
   const onSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name) return toast.error("Name is required");
     else if (!formData.feedback) return toast.error("Feedback is required");
     else if (!formData.email) return toast.error("Email is required");
+    else if (!validateEmail(formData.email)) {
+      return toast.error("Enter a valid email");
+    }
     try {
       setIsLoading(true);
+
       const { data } = await axios.post(
-        "http://localhost:8080/submit-feedback",
+        "https://feedback-app-oava.onrender.com/submit-feedback",
         {
           ...formData,
         }

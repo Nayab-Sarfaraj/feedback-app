@@ -2,8 +2,8 @@ import Feedback from "../models/feedback.model.js";
 
 export const getFeedbacks = async (req, res) => {
   try {
-    const { page } = req.query;
-    console.log(page);
+    let { page } = req.query;
+    // console.log(page);
     if (!page) page = 1;
     const toBeSkipped = Math.abs((page - 1) * 6);
     const totalFeedbacks = await Feedback.find().countDocuments();
@@ -24,7 +24,6 @@ export const getFeedbacks = async (req, res) => {
 
 export const submitFeedbacks = async (req, res, next) => {
   try {
-    console.log(req.body);
     const { email, name, feedback } = req.body;
     if (!email)
       return res
