@@ -18,14 +18,14 @@ const ViewFeedbacks = () => {
       setIsLoading(true);
       // `http://localhost:8080/feedbacks?page=${page}`
       const { data } = await axios.get(
-        `https://feedback-app-oava.onrender.com/feedbacks?page=${page}`
+        `https://feedback-app-backend-sooty.vercel.app/feedbacks?page=${page}`
       );
-      console.log(data);
+
       setFeedbacks(data.feedbacks);
       setTotalFeedback(data.totalFeedbacks);
     } catch (error) {
       console.log(error);
-      toast.error("Something went wrong");
+      toast.error(error.response?.data?.message || "Something went wrong");
     } finally {
       setIsLoading(false);
     }
@@ -54,10 +54,6 @@ const ViewFeedbacks = () => {
           )}
         </>
       )}
-      {/* {isOpen && }
-      
-
-       */}
     </div>
   );
 };

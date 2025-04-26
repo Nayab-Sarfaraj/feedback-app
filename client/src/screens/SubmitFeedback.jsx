@@ -27,7 +27,7 @@ const SubmitFeedback = () => {
       setIsLoading(true);
 
       const { data } = await axios.post(
-        "https://feedback-app-oava.onrender.com/submit-feedback",
+        "https://feedback-app-backend-sooty.vercel.app/submit-feedback",
         {
           ...formData,
         }
@@ -39,7 +39,9 @@ const SubmitFeedback = () => {
       setFormData({ name: "", email: "", feedback: "" });
     } catch (error) {
       console.log(error);
-      return toast.error(error.response?.data?.messgae);
+      return toast.error(
+        error.response?.data?.message || "Something went wrong"
+      );
     } finally {
       setIsLoading(false);
     }
